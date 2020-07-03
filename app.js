@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/v1/counselor', counselorsRouter);
+app.use('/api/v1/counsellor-service/counsellor', counselorsRouter);
 
 
 // catch 404 and forward to error handler
