@@ -12,7 +12,7 @@ router.get('/:name', async function(req, res, next) {
     if(counselor){
       return res.status(201).json(counselor);
     }else{
-      return res.status(500).send({
+      return res.status(200).send({
         message :"counselor not found"
       })
     }
@@ -29,7 +29,7 @@ router.post('/signup', async function(req,res,next){
       email:req.body.email
     });
     if(counselor){
-      res.status(200).send({
+      return res.status(200).send({
       success: 'true',
       message: "Counselor already exists"
       })
@@ -46,13 +46,14 @@ router.post('/signup', async function(req,res,next){
           image:req.body.image 
       })
     const savedCounselor= await newCounselor.save();
-    res.status(201).send({
+    return res.status(201).send({
       success:true,
       message:"new Counselor saved successfully"
     })
   }
 
   }catch(err){
+    console.log("error"+err.message)
     res.status(500).send({message:err.message})
 
   }
