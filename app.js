@@ -12,7 +12,8 @@ const url = require('./config/DBConfig');
 
 var app = express();
 mongoose.Promise = global.Promise;
-mongoose.connect(url,{useNewUrlParser:true})
+mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology: true})
+mongoose.set('useCreateIndex', true);
 const db= mongoose.connection
 db.on('error',(error)=>console.error(error));
 db.once('open',()=>console.log("connected to database"))

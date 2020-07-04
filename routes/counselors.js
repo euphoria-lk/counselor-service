@@ -3,9 +3,24 @@ var express = require('express');
 var router = express.Router();
 var Counselor=require('../models/Counselor');
 
-/* GET counselors listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+/* GET counselor listing. */
+router.get('/:name', async function(req, res, next) {
+  try{
+  const counselor= await Counselor.findOne({
+      name:req.params.name
+    });
+    if(counselor){
+      return res.status(201).json(counselor);
+    }else{
+      return res.status(500).send({
+        message :"counselor not found"
+      })
+    }
+  }catch(err){
+    res.status(500).send({
+      message:err.message
+      })
+  }
 });
 
 router.post('/signup', async function(req,res,next){
