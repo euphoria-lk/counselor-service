@@ -68,13 +68,14 @@ router.post('/login', async function(req,res,next){
     });
     if(counselor){
       return res.status(201).send({
-      success: 'true'
+      success: 'true',
+      counselor_profile:counselor
       })
     }else{
       
     return res.status(200).send({
       success:true,
-      message:"Username or password incorrect"
+      message:"Username or password incorrect",
     })
   }
 
