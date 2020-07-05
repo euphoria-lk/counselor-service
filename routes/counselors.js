@@ -60,6 +60,31 @@ router.post('/signup', async function(req,res,next){
   
 });
 
+router.post('/login', async function(req,res,next){
+  try{
+    const counselor= await Counselor.findOne({
+      email:req.body.email,
+      password:req.body.password,
+    });
+    if(counselor){
+      return res.status(200).send({
+      success: 'true'
+      })
+    }else{
+      
+    return res.status(201).send({
+      success:true,
+      message:"Username or password incorrect"
+    })
+  }
+
+  }catch(err){
+    console.log("error"+err.message)
+    res.status(500).send({message:err.message})
+
+  }
+  
+});
 
 module.exports = router;
 
