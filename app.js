@@ -12,11 +12,13 @@ const url = require('./config/DBConfig');
 
 var app = express();
 mongoose.Promise = global.Promise;
-mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology: true})
+mongoose.connect(url||'mongodb://localhost:27017/euphoria',{useNewUrlParser:true,useUnifiedTopology: true})
 mongoose.set('useCreateIndex', true);
 const db= mongoose.connection
+db.on('connected',()=>{
+  console.log("connected to the database");
+})
 db.on('error',(error)=>console.error(error));
-db.once('open',()=>console.log("connected to database"))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
