@@ -49,6 +49,9 @@ const CounselorSchema = new mongoose.Schema(
     image:{
         type:String,
         required: true
+    },
+      qualification:{
+        type:String,
     }    
   },
   { timestamps: true },
