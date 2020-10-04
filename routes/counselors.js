@@ -43,7 +43,8 @@ router.post('/signup', async function(req,res,next){
           hospital:req.body.hospital,
           speciality:req.body.speciality,
           city:req.body.city,
-          image:req.body.image 
+          image:req.body.image,
+          qualification:req.body.qualification 
       })
     const savedCounselor= await newCounselor.save();
     return res.status(201).send({
