@@ -23,6 +23,25 @@ router.get('/:name', async function(req, res, next) {
   }
 });
 
+router.get('/counselor/:email', async function(req, res, next) {
+  try{
+  const counselor= await Counselor.findOne({
+      email:req.params.email
+    });
+    if(counselor){
+      return res.status(201).json(counselor);
+    }else{
+      return res.status(200).send({
+        message :"counselor not found"
+      })
+    }
+  }catch(err){
+    res.status(500).send({
+      message:err.message
+      })
+  }
+});
+
 router.post('/signup', async function(req,res,next){
   try{
     const counselor= await Counselor.findOne({
